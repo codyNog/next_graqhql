@@ -1,0 +1,5 @@
+query getAsset($uid: String!) {
+  getAsset(uid: $uid) {
+    ...asset
+  }
+}

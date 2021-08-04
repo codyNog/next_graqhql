@@ -1,15 +1,9 @@
-import { Users, User } from "~/graphql/types";
 import { client } from "~/apis";
 
-const getUsers = async (): Promise<Users> => {
-  const { users } = (await client.Users()).data;
-  return users;
-};
+const getUsers = async () => (await client.getUsers()).data.getUsers;
 
-const getUser = async (uid: string): Promise<User> => {
-  const { user } = (await client.User({ uid })).data;
-  return user;
-};
+const getUser = async (uid: string) =>
+  (await client.getUser({ uid })).data.getUser;
 
 export const userRequests = {
   getUsers,

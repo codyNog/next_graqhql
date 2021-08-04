@@ -1,9 +1,7 @@
 import { client } from "~/apis";
 
-const getAsset = async (uid: string) => {
-  const { data } = await client.Asset({ uid });
-  return data.asset;
-};
+const getAsset = async (uid: string) =>
+  (await client.getAsset({ uid })).data.getAsset;
 
 export const assetRequests = {
   getAsset

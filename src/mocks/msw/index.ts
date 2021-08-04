@@ -7,10 +7,10 @@ import { GRAPHQL_URL } from "~/constants/env";
 const localhost = graphql.link(GRAPHQL_URL);
 
 export const handlers = [
-  localhost.query("Users", (_req, res, ctx) => {
+  localhost.query("getUsers", (_req, res, ctx) => {
     return res(ctx.data(graphqlMocks.user.usersQuery));
   }),
-  localhost.query("Asset", (_req, res, ctx) => {
+  localhost.query("getAsset", (_req, res, ctx) => {
     return res(ctx.data(graphqlMocks.asset.assetQuery));
   })
 ];

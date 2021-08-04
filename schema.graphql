@@ -2,9 +2,9 @@
 query
 """
 type Query {
-  user(uid: String!): User!
-  users: Users
-  asset(uid: String!): Asset!
+  getUser(uid: String!): User!
+  getUsers: Users
+  getAsset(uid: String!): Asset!
 }
 
 schema {
