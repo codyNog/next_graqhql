@@ -1,2 +1,2 @@
 src/graphql/**
-src/mocks/graphql.ts
+src/mocks/graphql/mock.ts

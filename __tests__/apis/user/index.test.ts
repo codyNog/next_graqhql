@@ -1,5 +1,5 @@
 import { userRequests } from "~/apis/user";
-import { graphqlMocks } from "~/mocks";
+import { graphqlMocks } from "~/mocks/graphql";
 import { startTestServer } from "~/mocks/msw";
 
 describe("userRequests", () => {

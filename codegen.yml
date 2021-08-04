@@ -9,9 +9,9 @@ generates:
       - "typescript-graphql-request"
     config:
       rawRequest: true
-  ./src/mocks/graphql.ts:
+  ./src/mocks/graphql/mock.ts:
     plugins:
       - typescript-mock-data:
-          typesFile: "../graphql/types.ts"
+          typesFile: "~/graphql/types.ts"
           typenames: keep
           terminateCircularRelationships: true

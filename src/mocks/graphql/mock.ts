@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define,@typescript-eslint/no-unused-vars,no-prototype-builtins */
-import { Asset, PageInfo, User, UserEdge, Users } from '../graphql/types';
+import { Asset, PageInfo, User, UserEdge, Users } from '~/graphql/types';
 
 export const anAsset = (overrides?: Partial<Asset>, relationshipsToOmit: Set<string> = new Set()): Asset => {
     relationshipsToOmit.add('Asset');

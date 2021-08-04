@@ -1,7 +1,7 @@
 import { setupWorker } from "msw";
 import { setupServer } from "msw/node";
 import { graphql } from "msw";
-import { graphqlMocks } from "..";
+import { graphqlMocks } from "~/mocks/graphql";
 import { GRAPHQL_URL } from "~/constants/env";
 
 const localhost = graphql.link(GRAPHQL_URL);

@@ -1,4 +1,4 @@
-import { anAsset, aUser, aUserEdge, aUsers } from "./graphql";
+import { anAsset, aUser, aUserEdge, aUsers } from "~/mocks/graphql/mock";
 
 const mockUsers = aUsers({
   edges: [
