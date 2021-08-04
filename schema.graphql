@@ -1,0 +1,39 @@
+"""
+ utils
+"""
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Asset {
+  uid: String!
+  name: String!
+  address: String!
+}
+type User {
+  uid: String!
+  name: String!
+  age: Int!
+  assets: [Asset!]
+}
+type UserEdge {
+  cursor: String!
+  node: User!
+}
+type Users {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [UserEdge!]!
+}
+
+type Query {
+  user(uid: String!): User!
+  users: Users
+}
+
+schema {
+  query: Query
+}
