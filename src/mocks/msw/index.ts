@@ -2,8 +2,9 @@ import { setupWorker } from "msw";
 import { setupServer } from "msw/node";
 import { graphql } from "msw";
 import { graphqlMocks } from "..";
+import { GRAPHQL_URL } from "~/constants/env";
 
-const localhost = graphql.link("/graphql");
+const localhost = graphql.link(GRAPHQL_URL);
 
 export const handlers = [
   localhost.query("Users", (_req, res, ctx) => {
@@ -14,7 +15,12 @@ export const handlers = [
   })
 ];
 
-if (typeof window === "undefined") {
+export const startTestServer = () => {
+  const server = setupServer(...handlers);
+  server.listen();
+};
+
+if (typeof window === "undefined" || process.env.NODE_ENV === "test") {
   const server = setupServer(...handlers);
   server.listen();
 } else {
