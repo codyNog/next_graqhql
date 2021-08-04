@@ -1,13 +1,14 @@
 import { Users, User } from "~/graphql/types";
-import { UserDocument, UsersDocument } from "~/graphql/types";
 import { client } from "~/apis";
 
-const getUsers = async () => {
-  return await client.request<Users>(UsersDocument);
+const getUsers = async (): Promise<Users> => {
+  const { users } = (await client.Users()).data;
+  return users;
 };
 
-const getUser = async (uid: string) => {
-  return await client.request<User>(UserDocument, { uid });
+const getUser = async (uid: string): Promise<User> => {
+  const { user } = (await client.User({ uid })).data;
+  return user;
 };
 
 export const userRequests = {

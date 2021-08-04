@@ -8,10 +8,10 @@ const localhost = graphql.link(GRAPHQL_URL);
 
 export const handlers = [
   localhost.query("Users", (_req, res, ctx) => {
-    return res(ctx.data(graphqlMocks.user.users));
+    return res(ctx.data(graphqlMocks.user.usersQuery));
   }),
   localhost.query("Asset", (_req, res, ctx) => {
-    return res(ctx.data(graphqlMocks.asset.asset));
+    return res(ctx.data(graphqlMocks.asset.assetQuery));
   })
 ];
 

@@ -1,8 +1,8 @@
-import { Asset, AssetDocument } from "~/graphql/types";
-import { client } from "..";
+import { client } from "~/apis";
 
 const getAsset = async (uid: string) => {
-  return await client.request<Asset>(AssetDocument, { uid });
+  const { data } = await client.Asset({ uid });
+  return data.asset;
 };
 
 export const assetRequests = {
