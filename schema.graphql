@@ -1,5 +1,18 @@
 """
- utils
+query
+"""
+type Query {
+  user(uid: String!): User!
+  users: Users
+  asset(uid: String!): Asset!
+}
+
+schema {
+  query: Query
+}
+
+"""
+utils
 """
 type PageInfo {
   endCursor: String
@@ -8,11 +21,18 @@ type PageInfo {
   startCursor: String
 }
 
+"""
+asset
+"""
 type Asset {
   uid: String!
   name: String!
   address: String!
 }
+
+"""
+user
+"""
 type User {
   uid: String!
   name: String!
@@ -27,13 +47,4 @@ type Users {
   totalCount: Int!
   pageInfo: PageInfo!
   edges: [UserEdge!]!
-}
-
-type Query {
-  user(uid: String!): User!
-  users: Users
-}
-
-schema {
-  query: Query
 }

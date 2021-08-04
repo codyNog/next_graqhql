@@ -1,11 +1,15 @@
-import { usersRequests } from "~/apis/users";
+import { userRequests } from "~/apis/user";
+import { User } from "~/domain/entity/User";
+import { parsePagination } from "~/libs/graphql";
 
-const getUsers = async () => {
-  return await usersRequests.getUsers();
+const getUsers = async (): Promise<User[]> => {
+  const users = await userRequests.getUsers();
+  return parsePagination(users, true);
 };
 
-const getUser = async (uid: string) => {
-  return await usersRequests.getUser(uid);
+const getUser = async (uid: string): Promise<User> => {
+  const user = await userRequests.getUser(uid);
+  return { ...user, assets: [] };
 };
 
 export const userImpl = {

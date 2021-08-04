@@ -1,0 +1,5 @@
+query Asset($uid: String!) {
+  asset(uid: $uid) {
+    ...asset
+  }
+}

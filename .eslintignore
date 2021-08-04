@@ -1,0 +1,2 @@
+src/graphql/**
+src/mocks/graphql.ts
