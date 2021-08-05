@@ -1,3 +1,7 @@
+schema {
+  query: Query
+}
+
 """
 query
 """
@@ -5,10 +9,6 @@ type Query {
   getUser(uid: String!): User!
   getUsers: Users
   getAsset(uid: String!): Asset!
-}
-
-schema {
-  query: Query
 }
 
 """
@@ -47,4 +47,14 @@ type Users {
   totalCount: Int!
   pageInfo: PageInfo!
   edges: [UserEdge!]!
+}
+
+"""
+userInput
+"""
+input UpdateUserInput {
+  uid: String!
+  name: String!
+  age: Int!
+  assets: [String!]!
 }

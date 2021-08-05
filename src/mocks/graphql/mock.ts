@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define,@typescript-eslint/no-unused-vars,no-prototype-builtins */
-import { Asset, PageInfo, User, UserEdge, Users } from '~/graphql/types';
+import { Asset, PageInfo, UpdateUserInput, User, UserEdge, Users } from '~/graphql/types';
 
 export const anAsset = (overrides?: Partial<Asset>, relationshipsToOmit: Set<string> = new Set()): Asset => {
     relationshipsToOmit.add('Asset');
@@ -17,6 +17,16 @@ export const aPageInfo = (overrides?: Partial<PageInfo>, relationshipsToOmit: Se
         hasNextPage: overrides && overrides.hasOwnProperty('hasNextPage') ? overrides.hasNextPage! : true,
         hasPreviousPage: overrides && overrides.hasOwnProperty('hasPreviousPage') ? overrides.hasPreviousPage! : false,
         startCursor: overrides && overrides.hasOwnProperty('startCursor') ? overrides.startCursor! : 'eum',
+    };
+};
+
+export const anUpdateUserInput = (overrides?: Partial<UpdateUserInput>, relationshipsToOmit: Set<string> = new Set()): UpdateUserInput => {
+    relationshipsToOmit.add('UpdateUserInput');
+    return {
+        uid: overrides && overrides.hasOwnProperty('uid') ? overrides.uid! : 'ullam',
+        name: overrides && overrides.hasOwnProperty('name') ? overrides.name! : 'eveniet',
+        age: overrides && overrides.hasOwnProperty('age') ? overrides.age! : 9461,
+        assets: overrides && overrides.hasOwnProperty('assets') ? overrides.assets! : ['aut'],
     };
 };
 
