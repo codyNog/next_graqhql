@@ -7,8 +7,15 @@ query
 """
 type Query {
   getUser(uid: String!): User!
-  getUsers: Users
+  getUsers: Users!
   getAsset(uid: String!): Asset!
+}
+
+"""
+mutation
+"""
+type Mutation {
+  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 """

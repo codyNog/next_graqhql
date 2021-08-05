@@ -24,6 +24,18 @@ export type Asset = {
   address: Scalars['String'];
 };
 
+/** mutation */
+export type Mutation = {
+  __typename?: 'Mutation';
+  updateUser: User;
+};
+
+
+/** mutation */
+export type MutationUpdateUserArgs = {
+  updateUserInput: UpdateUserInput;
+};
+
 /** utils */
 export type PageInfo = {
   __typename?: 'PageInfo';
@@ -37,7 +49,7 @@ export type PageInfo = {
 export type Query = {
   __typename?: 'Query';
   getUser: User;
-  getUsers?: Maybe<Users>;
+  getUsers: Users;
   getAsset: Asset;
 };
 
@@ -93,6 +105,13 @@ export type UserEdgeFragment = { __typename?: 'UserEdge', cursor: string, node: 
 
 export type UsersFragment = { __typename?: 'Users', totalCount: number, edges: Array<{ __typename?: 'UserEdge', cursor: string, node: { __typename?: 'User', uid: string, name: string, age: number } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } };
 
+export type UpdateUserMutationVariables = Exact<{
+  updateUserInput: UpdateUserInput;
+}>;
+
+
+export type UpdateUserMutation = { __typename?: 'Mutation', updateUser: { __typename?: 'User', uid: string, name: string, age: number } };
+
 export type GetAssetQueryVariables = Exact<{
   uid: Scalars['String'];
 }>;
@@ -110,7 +129,7 @@ export type GetUserQuery = { __typename?: 'Query', getUser: { __typename?: 'User
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', getUsers?: Maybe<{ __typename?: 'Users', totalCount: number, edges: Array<{ __typename?: 'UserEdge', cursor: string, node: { __typename?: 'User', uid: string, name: string, age: number } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } }> };
+export type GetUsersQuery = { __typename?: 'Query', getUsers: { __typename?: 'Users', totalCount: number, edges: Array<{ __typename?: 'UserEdge', cursor: string, node: { __typename?: 'User', uid: string, name: string, age: number } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export const AssetFragmentDoc = gql`
     fragment asset on Asset {
@@ -154,6 +173,13 @@ export const UsersFragmentDoc = gql`
 }
     ${UserEdgeFragmentDoc}
 ${PageInfoFragmentDoc}`;
+export const UpdateUserDocument = gql`
+    mutation updateUser($updateUserInput: UpdateUserInput!) {
+  updateUser(updateUserInput: $updateUserInput) {
+    ...user
+  }
+}
+    ${UserFragmentDoc}`;
 export const GetAssetDocument = gql`
     query getAsset($uid: String!) {
   getAsset(uid: $uid) {
@@ -180,11 +206,15 @@ export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, str
 
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
+const UpdateUserDocumentString = print(UpdateUserDocument);
 const GetAssetDocumentString = print(GetAssetDocument);
 const GetUserDocumentString = print(GetUserDocument);
 const GetUsersDocumentString = print(GetUsersDocument);
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    updateUser(variables: UpdateUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<{ data?: UpdateUserMutation | undefined; extensions?: any; headers: Dom.Headers; status: number; errors?: GraphQLError[] | undefined; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<UpdateUserMutation>(UpdateUserDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateUser');
+    },
     getAsset(variables: GetAssetQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<{ data?: GetAssetQuery | undefined; extensions?: any; headers: Dom.Headers; status: number; errors?: GraphQLError[] | undefined; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAssetQuery>(GetAssetDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAsset');
     },
