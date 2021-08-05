@@ -9,7 +9,7 @@ describe("userImpl", () => {
   it("getUsers", async () => {
     const users = await backend.user.getUsers();
     expect(users).toStrictEqual([
-      { age: 20, assets: [], name: "bar", uid: "foo" }
+      { age: 28, assets: [], name: "Kohki Noguchi", uid: "foo" }
     ]);
   });
 });

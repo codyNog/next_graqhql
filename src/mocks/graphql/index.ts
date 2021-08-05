@@ -4,7 +4,7 @@ import { anAsset, aUser, aUserEdge, aUsers } from "~/mocks/graphql/mock";
 const users = aUsers({
   edges: [
     aUserEdge({
-      node: aUser({ uid: "foo", name: "bar", age: 20, assets: [] })
+      node: aUser({ uid: "foo", name: "Kohki Nguchi", age: 28, assets: [] })
     })
   ]
 });

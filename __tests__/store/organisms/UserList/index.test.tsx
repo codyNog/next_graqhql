@@ -19,7 +19,7 @@ describe("useUserList", () => {
     await waitForNextUpdate();
 
     expect(result.current.users).toStrictEqual([
-      { age: 20, assets: [], name: "bar", uid: "foo" }
+      { age: 28, assets: [], name: "Kohki Noguchi", uid: "foo" }
     ]);
   });
 });
