@@ -1,9 +1,7 @@
-import useSWR from "swr";
-import { backend } from "~/domain/backend";
-import { User } from "~/domain/entity/User";
+import { GlobalStore } from "~/store/global";
 
 export const useUserList = () => {
-  const { data: users } = useSWR<User[]>("users", backend.user.getUsers);
+  const { users } = GlobalStore.useContainer().userStore;
 
   return { users };
 };
